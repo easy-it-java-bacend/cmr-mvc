@@ -1,4 +1,4 @@
-package kg.easyit.crm.dto;
+package kg.easyit.crm.domain.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -10,4 +10,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDTO {
     String username;
+    String password;
 }

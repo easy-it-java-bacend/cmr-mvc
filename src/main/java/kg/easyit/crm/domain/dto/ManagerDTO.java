@@ -1,4 +1,4 @@
-package kg.easyit.crm.dto;
+package kg.easyit.crm.domain.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

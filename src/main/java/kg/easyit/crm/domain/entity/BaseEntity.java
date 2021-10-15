@@ -1,4 +1,4 @@
-package kg.easyit.crm.entity;
+package kg.easyit.crm.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -18,7 +18,25 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(name = "is_deleted", nullable = false)
+    Boolean isDeleted;
+
     @Column(name = "date_created")
     Date dateCreated;
+
+    @Column(name = "date_updated")
+    Date dateUpdated;
+
+    @PrePersist
+    protected void onCreate() {
+        isDeleted = false;
+        dateCreated = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        dateUpdated = new Date();
+    }
+
 
 }

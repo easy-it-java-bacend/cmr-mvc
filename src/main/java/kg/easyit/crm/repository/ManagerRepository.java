@@ -1,6 +1,6 @@
 package kg.easyit.crm.repository;
 
-import kg.easyit.crm.entity.Manager;
+import kg.easyit.crm.domain.entity.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

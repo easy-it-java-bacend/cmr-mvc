@@ -1,4 +1,4 @@
-package kg.easyit.crm.entity;
+package kg.easyit.crm.domain.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

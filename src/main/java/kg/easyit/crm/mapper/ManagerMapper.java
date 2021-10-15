@@ -1,7 +1,7 @@
 package kg.easyit.crm.mapper;
 
-import kg.easyit.crm.dto.ManagerDTO;
-import kg.easyit.crm.entity.Manager;
+import kg.easyit.crm.domain.dto.ManagerDTO;
+import kg.easyit.crm.domain.entity.Manager;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

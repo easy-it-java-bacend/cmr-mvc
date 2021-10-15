@@ -1,15 +1,15 @@
 package kg.easyit.crm.controller;
 
-import kg.easyit.crm.dto.UserDTO;
-import kg.easyit.crm.service.UserService;
+import kg.easyit.crm.domain.dto.UserDTO;
+import kg.easyit.crm.domain.request.ChangePasswordRequest;
+import kg.easyit.crm.domain.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/user")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,22 +17,19 @@ public class UserController {
 
     final UserService userService;
 
-    @RequestMapping(value = "/register")
-    public String register() {
-        return "register-form";
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody UserDTO userDTO) {
+        return userService.save(userDTO);
     }
 
-    @RequestMapping(value = "/confirmation")
-    public String confirmation(@RequestParam String firstName,
-                               @RequestParam String lastName,
-                               @RequestParam String email,
-                               @RequestParam String phoneNumber) {
-
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(email);
-        System.out.println(phoneNumber);
-        // service in DTO
-        return "confirmation-form";
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
+        return userService.updatePassword(changePasswordRequest);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return userService.deleteOne(id);
+    }
+
 }
