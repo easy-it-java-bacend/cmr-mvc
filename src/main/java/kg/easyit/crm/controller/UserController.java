@@ -17,6 +17,11 @@ public class UserController {
 
     final UserService userService;
 
+    @GetMapping("/get-one/{id}")
+    public ResponseEntity<?> getOne(@PathVariable Long id) {
+        return userService.findOne(id);
+    }
+
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody UserDTO userDTO) {
         return userService.save(userDTO);

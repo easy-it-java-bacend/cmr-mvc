@@ -37,7 +37,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> findOne(Long id) {
-        return null;
+        try {
+            return userRepository.findByIdAndIsDeletedFalse(id).map(ResponseEntity::ok)
+                    .orElseThrow(() -> new RuntimeException("User with id=" + id + " not found"));
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
     }
 
     @Override
@@ -53,8 +58,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> updateUsername(ChangeUsernameRequest changeUsernameRequest) {
-        // homework
-        return null;
+        if (userRepository.existsByUsername(changeUsernameRequest.getUsername())) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(new MessageResponse("Username '" + changeUsernameRequest.getUsername() + "' is already taken"));
+        }
+        return userRepository.findByIdAndIsDeletedFalse(changeUsernameRequest.getId()).map(user -> {
+            user.setUsername(changeUsernameRequest.getUsername());
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Username has changed successfully"));
+        }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new MessageResponse("User with id=" + changeUsernameRequest.getId() + " not found or deleted")));
     }
 
     @Override
@@ -64,7 +78,8 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             return ResponseEntity.ok(new MessageResponse("User with id=" + id + " is deleted"));
         }).orElse(ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.
+                        NOT_FOUND)
                 .body(new MessageResponse("User with id=" + id + " not found or deleted.")));
     }
 }
