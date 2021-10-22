@@ -1,6 +1,6 @@
 package kg.easyit.crm.domain.service.impl;
 
-import kg.easyit.crm.domain.dto.UserDTO;
+import kg.easyit.crm.domain.dto.UserDto;
 import kg.easyit.crm.domain.request.ChangePasswordRequest;
 import kg.easyit.crm.domain.request.ChangeUsernameRequest;
 import kg.easyit.crm.domain.request.MessageResponse;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     final UserRepository userRepository;
 
     @Override
-    public ResponseEntity<?> save(UserDTO userDTO) {
+    public ResponseEntity<?> save(UserDto userDTO) {
         if (userRepository.existsByUsername(userDTO.getUsername())) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)

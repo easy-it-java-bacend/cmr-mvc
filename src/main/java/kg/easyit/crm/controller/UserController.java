@@ -1,6 +1,6 @@
 package kg.easyit.crm.controller;
 
-import kg.easyit.crm.domain.dto.UserDTO;
+import kg.easyit.crm.domain.dto.UserDto;
 import kg.easyit.crm.domain.request.ChangePasswordRequest;
 import kg.easyit.crm.domain.service.UserService;
 import lombok.AccessLevel;
@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> save(@RequestBody UserDto userDTO) {
         return userService.save(userDTO);
     }
 
