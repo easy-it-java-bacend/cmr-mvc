@@ -1,7 +1,7 @@
 package kg.easyit.crm.mapper;
 
-import kg.easyit.crm.domain.dto.CourseDto;
-import kg.easyit.crm.domain.entity.Course;
+import kg.easyit.crm.model.dto.CourseDto;
+import kg.easyit.crm.model.entity.Course;
 import org.mapstruct.factory.Mappers;
 
 public interface CourseMapper extends BaseMapper<Course, CourseDto> {

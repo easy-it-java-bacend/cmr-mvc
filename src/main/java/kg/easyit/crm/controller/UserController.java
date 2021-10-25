@@ -1,14 +1,19 @@
 package kg.easyit.crm.controller;
 
-import kg.easyit.crm.domain.dto.UserDto;
-import kg.easyit.crm.domain.request.ChangePasswordRequest;
-import kg.easyit.crm.domain.service.UserService;
+import kg.easyit.crm.exceptions.UsernameAlreadyExists;
+import kg.easyit.crm.model.dto.UserDto;
+import kg.easyit.crm.model.request.ChangePasswordRequest;
+import kg.easyit.crm.model.request.MessageResponse;
+import kg.easyit.crm.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/user")
@@ -24,7 +29,12 @@ public class UserController {
 
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody UserDto userDTO) {
-        return userService.save(userDTO);
+        try {
+            return ResponseEntity.ok(userService.save(userDTO));
+        } catch (UsernameAlreadyExists ex) {
+            log.error(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getClass().getSimpleName() + ": " + ex.getMessage());
+        }
     }
 
     @PutMapping("/change-password")
