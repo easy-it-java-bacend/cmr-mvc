@@ -3,7 +3,6 @@ package kg.easyit.crm.controller;
 import kg.easyit.crm.exceptions.UsernameAlreadyExists;
 import kg.easyit.crm.model.dto.UserDto;
 import kg.easyit.crm.model.request.ChangePasswordRequest;
-import kg.easyit.crm.model.request.MessageResponse;
 import kg.easyit.crm.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

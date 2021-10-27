@@ -3,7 +3,7 @@ package kg.easyit.crm.service;
 import kg.easyit.crm.model.dto.UserDto;
 import kg.easyit.crm.model.request.ChangePasswordRequest;
 import kg.easyit.crm.model.request.ChangeUsernameRequest;
-import kg.easyit.crm.model.request.MessageResponse;
+import kg.easyit.crm.model.respoonse.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
