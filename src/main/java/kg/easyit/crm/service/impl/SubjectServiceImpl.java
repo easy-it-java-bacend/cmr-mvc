@@ -25,6 +25,6 @@ public class SubjectServiceImpl implements SubjectService {
                 .INSTANCE
                 .toDtoList(subjectRepository.getAllByIsDeletedFalse()
                         .map(subjects -> subjects.stream().filter(subject -> ids.contains(subject.getId())).collect(Collectors.toList()))
-                        .orElseThrow(() -> new RuntimeException("No subject are available. Please create first")));
+                        .orElseThrow(() -> new RuntimeException("No subjects are available. Please create subject first")));
     }
 }

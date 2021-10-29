@@ -16,5 +16,7 @@ public class ManagerDto {
     String lastName;
     String phoneNumber;
     String email;
+    String username;
+    String password;
 
 }

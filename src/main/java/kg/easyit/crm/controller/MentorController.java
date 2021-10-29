@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ public class MentorController {
 
     final MentorService mentorService;
 
+    @PreAuthorize("hasAuthority('SUPER_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody CreateMentorRequest createMentorRequest) {
         try {
@@ -29,6 +31,7 @@ public class MentorController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/get-one/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id) {
         try {
@@ -40,6 +43,7 @@ public class MentorController {
         }
     }
 
+    @PreAuthorize("hasAuthority('SUPER_ADMIN')")
     @DeleteMapping("/delete-one/{id}")
     public ResponseEntity<?> deleteOne(@PathVariable Long id) {
         try {

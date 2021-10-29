@@ -16,4 +16,5 @@ public interface ManagerRepository extends JpaRepository<Manager, Long> {
 
     Optional<Manager> findByIdAndIsDeletedFalse(Long id);
     Optional<List<Manager>> findAllByIsDeletedFalse();
+    Optional<Manager> findByUsernameAndIsDeletedFalse(String username);
 }

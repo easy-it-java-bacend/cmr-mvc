@@ -1,16 +1,18 @@
 package kg.easyit.crm.service;
 
 import kg.easyit.crm.model.dto.ManagerDto;
+import kg.easyit.crm.model.respoonse.MessageResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface ManagerService {
+public interface ManagerService extends UserDetailsService {
 
-    ResponseEntity<?> save(ManagerDto managerDTO);
-    ResponseEntity<?> findOne(Long id);
-    ResponseEntity<?> updateFirstName(String firstName);
-    ResponseEntity<?> updateLastName(String lastName);
-    ResponseEntity<?> updatePhoneNumber(String phoneNumber);
-    ResponseEntity<?> deleteOne(Long id);
+    MessageResponse save(ManagerDto managerDTO);
+    ManagerDto findOne(Long id);
+    MessageResponse updateFirstName(String firstName);
+    MessageResponse updateLastName(String lastName);
+    MessageResponse updatePhoneNumber(String phoneNumber);
+    MessageResponse deleteOne(Long id);
 }
